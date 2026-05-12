@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tópico - Lupa Cidadã</title>
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <button onclick="history.back()" class="icon-btn">←</button>
+            <h1 id="page-title">Carregando...</h1>
+            <div style="width: 40px;"></div> <!-- Spacer -->
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="indicators-list">
+            <!-- Skeletons -->
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+        </div>
+    </main>
+
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/tema.js"></script>
+    <script src="assets/js/render.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const params = utils.lerParams();
+            const container = document.getElementById('indicators-list');
+            const title = document.getElementById('page-title');
+
+            if (!params.cidade) {
+                render.erro(container, 'Cidade não especificada.');
+                return;
+            }
+
+            // Exemplo simples: se houver tópico na URL, mostra indicadores. 
+            // Caso contrário, mostra lista de tópicos.
+            if (params.topico) {
+                try {
+                    const data = await getTopico(params.cidade, params.topico);
+                    title.innerText = `${data.cidade} - ${data.topico}`;
+                    
+                    container.innerHTML = data.indicadores.map(ind => `
+                        <div class="city-card">
+                            <h4>${ind.nome}</h4>
+                            <p class="value">${ind.disponivel ? ind.valor.toFixed(2) + ' ' + ind.unidade : 'Indisponível'}</p>
+                            <p class="meta">Fonte: ${ind.fonte} (${ind.ano})</p>
+                        </div>
+                    `).join('');
+                } catch (e) {
+                    render.erro(container, 'Erro ao carregar indicadores.');
+                }
+            } else {
+                try {
+                    const topicos = await getTopicos(params.cidade);
+                    title.innerText = 'Escolha um Tópico';
+                    container.innerHTML = topicos.map(t => `
+                        <div class="city-card" onclick="utils.navegarPara('topico.html?cidade=${params.cidade}&topico=${t}')">
+                            <h4>${t.charAt(0).toUpperCase() + t.slice(1)}</h4>
+                        </div>
+                    `).join('');
+                } catch (e) {
+                    render.erro(container, 'Erro ao carregar tópicos.');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

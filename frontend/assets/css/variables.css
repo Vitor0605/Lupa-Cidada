@@ -1,0 +1,29 @@
+:root {
+    /* TEMA CLARO (padrão) */
+    --cor-primaria:   #317CD9;   /* azul — botões, chips ativos */
+    --cor-destaque:   #F3C127;   /* amarelo — logo, badges */
+    --cor-fundo:      #F0F4FB;
+    --cor-superficie: #FFFFFF;   /* fundo de cards */
+    --cor-texto:      #1A1F3C;
+    --cor-texto-2:    #4A5170;   /* texto secundário */
+    --cor-borda:      rgba(49,124,217,0.15);
+
+    /* Fontes e Espaçamento */
+    --fonte-principal: 'Inter', sans-serif;
+    --raio-card: 12px;
+    --raio-input: 8px;
+    --raio-chip: 20px;
+    --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.05);
+    
+    --largura-mobile: 390px;
+}
+
+.dark-mode {
+    /* TEMA ESCURO */
+    --cor-primaria:   #4A91E8;
+    --cor-fundo:      #12153A;
+    --cor-superficie: #1C2150;
+    --cor-texto:      #FFFFFF;
+    --cor-texto-2:    #A0AAD4;
+    --cor-borda:      rgba(255, 255, 255, 0.1);
+}

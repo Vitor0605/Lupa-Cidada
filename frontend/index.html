@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Lupa Cidadã - Transparência no Paraná</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🔍</span>
+                <h1>Lupa<span>Cidadã</span></h1>
+            </div>
+            <button id="theme-toggle" class="icon-btn" aria-label="Alternar tema">
+                <span class="theme-icon-light">☀️</span>
+                <span class="theme-icon-dark">🌙</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h2>Dados públicos das cidades do Paraná na sua mão.</h2>
+            <p>Explore indicadores de saúde, educação, segurança e muito mais.</p>
+        </section>
+
+        <section class="search-section">
+            <div class="search-bar">
+                <input type="text" id="city-search" placeholder="Buscar cidade (ex: Curitiba, Londrina...)" autocomplete="off">
+                <span class="search-icon">🔍</span>
+            </div>
+            <div id="search-results" class="search-results hidden">
+                <!-- Resultados renderizados via JS -->
+            </div>
+        </section>
+
+        <section class="featured-cities">
+            <div class="section-header">
+                <h3>Cidades em Destaque</h3>
+                <a href="mapa.html" class="text-link">Ver mapa →</a>
+            </div>
+            <div id="cities-grid" class="cities-grid">
+                <!-- Skeletons iniciais -->
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+            </div>
+        </section>
+
+        <section class="updates-section">
+            <div class="section-header">
+                <h3>Últimas Atualizações</h3>
+            </div>
+            <div id="updates-feed" class="updates-feed">
+                <!-- Skeletons iniciais -->
+                <div class="skeleton-update"></div>
+                <div class="skeleton-update"></div>
+            </div>
+        </section>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Início</span>
+        </a>
+        <a href="mapa.html" class="nav-item">
+            <span class="nav-icon">📍</span>
+            <span class="nav-label">Mapa</span>
+        </a>
+        <a href="comparar.html" class="nav-item">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Comparar</span>
+        </a>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/tema.js"></script>
+    <script src="assets/js/render.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
